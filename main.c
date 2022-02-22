@@ -3,60 +3,11 @@
 #include <unistd.h>
 #define SDL_MAIN_HANDLED /*To fix SDL's "undefined reference to WinMain" issue*/
 #include <SDL2/SDL.h>
-#include "lvgl.h"
-#include "lv_drivers/sdl/sdl.h"
+#include <lvgl/lvgl.h>
+#include <lvgl/lv_drivers/sdl/sdl.h>
 
 //#include "lvgl/examples/lv_examples.h"
 //#include "lvgl/demos/lv_demos.h"
-
-static void hal_init(void);
-
-int main(int argc, char **argv)
-{
-  (void)argc; /*Unused*/
-  (void)argv; /*Unused*/
-
-  /*Initialize LVGL*/
-  lv_init();
-
-  /*Initialize the HAL (display, input devices, tick) for LVGL*/
-  hal_init();
-
-//  lv_example_switch_1();
-//  lv_example_calendar_1();
-//  lv_example_btnmatrix_2();
-//  lv_example_checkbox_1();
-//  lv_example_colorwheel_1();
-//  lv_example_chart_6();
-//  lv_example_table_2();
-//  lv_example_scroll_2();
-//  lv_example_textarea_1();
-//  lv_example_msgbox_1();
-//  lv_example_dropdown_2();
-//  lv_example_btn_1();
-//  lv_example_scroll_1();
-//  lv_example_tabview_1();
-//  lv_example_tabview_1();
-//  lv_example_flex_3();
-//  lv_example_label_1();
-
-	lv_demo_widgets();
-
-	while(1) {
-		/*
-		 * Periodically call the lv_task handler.
-		 * It could be done in a timer interrupt or an OS task too.
-		 */
-		lv_timer_handler();
-		usleep(5 * 1000);
-	}
-
-	return 0;
-}
-
-/**********************
- *   STATIC FUNCTIONS
- **********************/
 
 /**
  * Initialize the Hardware Abstraction Layer (HAL) for the LVGL graphics
@@ -117,4 +68,47 @@ static void hal_init(void)
   lv_obj_t * cursor_obj = lv_img_create(lv_scr_act()); /*Create an image object for the cursor */
   lv_img_set_src(cursor_obj, &mouse_cursor_icon);           /*Set the image source*/
   lv_indev_set_cursor(mouse_indev, cursor_obj);             /*Connect the image  object to the driver*/
+}
+
+int main(int argc, char **argv)
+{
+  (void)argc; /*Unused*/
+  (void)argv; /*Unused*/
+
+  /*Initialize LVGL*/
+  lv_init();
+
+  /*Initialize the HAL (display, input devices, tick) for LVGL*/
+  hal_init();
+
+//  lv_example_switch_1();
+//  lv_example_calendar_1();
+//  lv_example_btnmatrix_2();
+//  lv_example_checkbox_1();
+//  lv_example_colorwheel_1();
+//  lv_example_chart_6();
+//  lv_example_table_2();
+//  lv_example_scroll_2();
+//  lv_example_textarea_1();
+//  lv_example_msgbox_1();
+//  lv_example_dropdown_2();
+//  lv_example_btn_1();
+//  lv_example_scroll_1();
+//  lv_example_tabview_1();
+//  lv_example_tabview_1();
+//  lv_example_flex_3();
+//  lv_example_label_1();
+
+	lv_demo_widgets();
+
+	while(1) {
+		/*
+		 * Periodically call the lv_task handler.
+		 * It could be done in a timer interrupt or an OS task too.
+		 */
+		lv_timer_handler();
+		usleep(5 * 1000);
+	}
+
+	return 0;
 }
