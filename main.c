@@ -1,66 +1,15 @@
-
-/**
- * @file main
- *
- */
-
-/*********************
- *      INCLUDES
- *********************/
 #define _DEFAULT_SOURCE /* needed for usleep() */
 #include <stdlib.h>
 #include <unistd.h>
 #define SDL_MAIN_HANDLED /*To fix SDL's "undefined reference to WinMain" issue*/
 #include <SDL2/SDL.h>
-#include "lvgl/lvgl.h"
-#include "lvgl/examples/lv_examples.h"
-#include "lvgl/demos/lv_demos.h"
+#include "lvgl.h"
 #include "lv_drivers/sdl/sdl.h"
 
-/*********************
- *      DEFINES
- *********************/
+//#include "lvgl/examples/lv_examples.h"
+//#include "lvgl/demos/lv_demos.h"
 
-/**********************
- *      TYPEDEFS
- **********************/
-
-/**********************
- *  STATIC PROTOTYPES
- **********************/
 static void hal_init(void);
-
-/**********************
- *  STATIC VARIABLES
- **********************/
-
-/**********************
- *      MACROS
- **********************/
-
-/**********************
- *   GLOBAL FUNCTIONS
- **********************/
-
-/*********************
- *      DEFINES
- *********************/
-
-/**********************
- *      TYPEDEFS
- **********************/
-
-/**********************
- *      VARIABLES
- **********************/
-
-/**********************
- *  STATIC PROTOTYPES
- **********************/
-
-/**********************
- *   GLOBAL FUNCTIONS
- **********************/
 
 int main(int argc, char **argv)
 {
@@ -91,16 +40,18 @@ int main(int argc, char **argv)
 //  lv_example_flex_3();
 //  lv_example_label_1();
 
-    lv_demo_widgets();
+	lv_demo_widgets();
 
-  while(1) {
-      /* Periodically call the lv_task handler.
-       * It could be done in a timer interrupt or an OS task too.*/
-      lv_timer_handler();
-      usleep(5 * 1000);
-  }
+	while(1) {
+		/*
+		 * Periodically call the lv_task handler.
+		 * It could be done in a timer interrupt or an OS task too.
+		 */
+		lv_timer_handler();
+		usleep(5 * 1000);
+	}
 
-  return 0;
+	return 0;
 }
 
 /**********************
